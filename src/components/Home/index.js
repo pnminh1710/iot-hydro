@@ -6,15 +6,15 @@ import style from './Home.css';
 const authCondition = (authUser) => !!authUser;
 
 const waterHeight = {
-  height: '30%',
+  height: '60%',
 };
 
 const fakeHistory = ['01/06', '02/06', '03/06', '04/06', '05/06', '06/06', '07/06', ];
 
-const listHistory = fakeHistory.map(element => 
-  <div className="column has-text-centered">
+const listHistory = fakeHistory.map((element, key) => 
+  <div key={key} className="column has-text-centered container">
     <div className={style.dateBox}>
-      {element}
+      <p className="title is-5">{element}</p>
     </div>
   </div>
 );
@@ -51,7 +51,8 @@ class HomePage extends Component {
           <div className="columns">
             <div className="column is-one-quarter">
               <h2 className={`${style.titleData} title is-3`}>Water Level</h2>
-              <div className={style.tank}>
+              <div className={`${style.tank} has-text-centered`}>
+                <p className="subtitle is-2">{waterHeight.height}</p>
                 <div className={style.water} style={waterHeight}></div>
               </div>
             </div>
