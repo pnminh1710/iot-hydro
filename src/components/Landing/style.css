@@ -1,0 +1,21 @@
+:local(.wrapper) {
+  height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+
+:local(.description) {
+  max-width: 360px;
+  text-align: center;
+}
+
+:local(.buttonLogin) {
+  margin-top: 32px;
+}
+
+:local(.title) {
+  font-weight: 200;
+  color: #00d1b2;
+}

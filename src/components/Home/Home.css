@@ -1,0 +1,27 @@
+:local(.titleData) {
+  font-weight: 200;
+}
+
+:local(.tank) {
+  width: 100%;
+  height: 360px;
+  border: 1px solid #dbdbdb;
+  position: relative;
+  display: inline-block;
+}
+
+:local(.water) {
+  position: absolute;
+  background: #209cee;
+  width: 100%;
+  bottom: 0;
+}
+
+:local(.box) {
+  height: 360px;
+}
+
+:local(.dateBox) {
+  border: 1px solid #23d160;
+  border-radius: 5px;
+}
