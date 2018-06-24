@@ -14,7 +14,7 @@ const Navigation = () =>
   </AuthUserContext.Consumer>
 
 const NavigationAuth = () =>
-  <nav className="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div className="navbar is-primary" role="navigation" aria-label="main navigation">
     <div className="navbar-brand">
       <p className="navbar-item">
         <Link to={routes.HOME}>IoT-H</Link>
@@ -27,13 +27,13 @@ const NavigationAuth = () =>
     </div>
     <div className="navbar-menu">
       <div className="navbar-end">
-          <Link className="navbar-item" to={routes.LANDING}>Landing</Link>
+          <Link className="navbar-item" to={routes.CATEGORIES}>Categories</Link>
           <Link className="navbar-item" to={routes.HOME}>Home</Link>
           <Link className="navbar-item" to={routes.ACCOUNT}>Account</Link>
           <SignOutButton />
       </div>
     </div>
-  </nav>
+  </div>
 
 const NavigationNonAuth = () => null;
 
