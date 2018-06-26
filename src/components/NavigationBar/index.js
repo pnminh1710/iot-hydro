@@ -17,7 +17,7 @@ const NavigationAuth = () =>
   <div className="navbar is-primary" role="navigation" aria-label="main navigation">
     <div className="navbar-brand">
       <p className="navbar-item">
-        <Link to={routes.HOME}>IoT-H</Link>
+        <Link className="navbar-item" to={routes.HOME}>IoT-H</Link>
       </p>
       <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false">
         <span aria-hidden="true"></span>

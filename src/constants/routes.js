@@ -8,3 +8,4 @@ export const CONTROL = '/control';
 export const HISTORY = '/history';
 export const CATEGORIES = '/categories'
 export const CATEGORY = '/category'
+export const PRODUCTS = '/products'
