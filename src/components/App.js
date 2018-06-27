@@ -14,8 +14,8 @@ import AccountPage from './Account';
 import ControlPage from './ControlPage';
 import HistoryPage from './HistoryPage';
 import CategoriesPage from './Categories';
-import Category from './Category';
 import Products from './Products';
+import Settings from './Settings';
 
 import * as routes from '../constants/routes';
 import { firebase } from '../firebase';
@@ -53,7 +53,7 @@ class App extends Component {
           <Route exact path={routes.CONTROL} component={() => <ControlPage />} />
           <Route exact path={routes.HISTORY} component={() => <HistoryPage />} />
           <Route exact path={routes.CATEGORIES}  component={() => <CategoriesPage />} />
-          <Route path={routes.CATEGORY}  component={() => <Category />} />
+          <Route exact path={routes.SETTINGS}  component={() => <Settings />} />
           <Route path={routes.PRODUCTS}  component={() => <Products />} />
         </div>
       </Router>)

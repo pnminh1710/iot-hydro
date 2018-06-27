@@ -57,10 +57,6 @@ class CreateCategoryForm extends Component {
     event.preventDefault();
   }
 
-  componentDidMount() {
-    console.log(this.props);
-  }
-
   render() {
     const {
       id,
@@ -72,52 +68,97 @@ class CreateCategoryForm extends Component {
       error,
     } = this.state;
     const isInvalid =
-      id === ''  ||
+      id === '' ||
       name === '' ||
       code === '' ||
       type === '';
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          value={id}
-          onChange={event => this.setState(byPropKey('id', event.target.value))}
-          type="text"
-          placeholder="ID"
-        />
-        <input
-          value={name}
-          onChange={event => this.setState(byPropKey('name', event.target.value))}
-          type="text"
-          placeholder="Categories Name"
-        />
-        <input
-          value={code}
-          onChange={event => this.setState(byPropKey('code', event.target.value))}
-          type="text"
-          placeholder="Categories Code"
-        />
-        <input
-          value={type}
-          onChange={event => this.setState(byPropKey('type', event.target.value))}
-          type="text"
-          placeholder="Categories Type"
-        />
-        <input
-          value={startDate}
-          onChange={event => this.setState(byPropKey('startDate', event.target.value))}
-          type="date"
-        />
-        <input
-          value={endDate}
-          onChange={event => this.setState(byPropKey('endDate', event.target.value))}
-          type="date"
-        />
-        <button disabled={isInvalid} type="submit">
-          Add New
-        </button>
-
-        {error && <p>{error.message}</p>}
-      </form>
+      <div className="container">
+      <div className="columns">
+        <div className="column is-two-thirds">
+          <h1 className="title is-3">Categories Table</h1>
+        </div>
+        <div className="column">
+          <form onSubmit={this.onSubmit}>
+          <h1 className="title is-3">Create Table</h1>
+            <div className="field">
+              <label className="label">ID</label>
+              <div className="control">
+                <input
+                  className="input"
+                  value={id}
+                  onChange={event => this.setState(byPropKey('id', event.target.value))}
+                  type="text"
+                  placeholder="ID"
+                />
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Name</label>
+              <div className="control">
+                <input
+                  className="input"
+                  value={name}
+                  onChange={event => this.setState(byPropKey('name', event.target.value))}
+                  type="text"
+                  placeholder="Categories Name"
+                />
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Code</label>
+              <div className="control">
+                <input
+                  className="input"
+                  value={code}
+                  onChange={event => this.setState(byPropKey('code', event.target.value))}
+                  type="text"
+                  placeholder="Categories Code"
+                />
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Type</label>
+              <div className="control">
+                <input
+                  className="input"
+                  value={type}
+                  onChange={event => this.setState(byPropKey('type', event.target.value))}
+                  type="text"
+                  placeholder="Categories Type"
+                />
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Start Day</label>
+              <div className="control">
+                <input
+                  className="input"
+                  value={startDate}
+                  onChange={event => this.setState(byPropKey('startDate', event.target.value))}
+                  type="date"
+                />
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">End Day</label>
+              <div className="control">
+                <input
+                  className="input"
+                  value={endDate}
+                  onChange={event => this.setState(byPropKey('endDate', event.target.value))}
+                  type="date"
+                />
+              </div>
+            </div>
+            <button className="button is-primary" disabled={isInvalid} type="submit">
+              Add New Category
+            </button>
+            {error && <p>{error.message}</p>}
+          </form>
+        </div>
+      </div>
+      </div>
     );
   }
 }

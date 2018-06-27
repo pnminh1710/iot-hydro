@@ -5,6 +5,7 @@
   "dependencies": {
     "bulma": "^0.7.1",
     "firebase": "^5.0.4",
+    "qrcode.react": "^0.8.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-router-dom": "^4.3.1",
