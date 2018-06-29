@@ -9,7 +9,16 @@ const authCondition = (authUser) => !!authUser;
 
 const CategoriesPage = ({ history, location }) =>
   <div className={styles.wrapper}>
-    <CreateCategoryForm history={history} location={location} />
+    <div className="container">
+      <div className="columns">
+        <div className="column is-two-thirds">
+          <h1 className="title is-3">Categories Table</h1>
+        </div>
+        <div className="column">
+          <CreateCategoryForm history={history} location={location} />
+      </div>
+      </div>
+    </div>
   </div>
 
 export default withAuthorization(authCondition)(CategoriesPage);

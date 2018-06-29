@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { database } from '../../firebase';
+import { db } from '../../firebase/firebase';
 import * as routes from '../../constants/routes';
 
 const INITIAL_STATE = {
@@ -7,8 +8,6 @@ const INITIAL_STATE = {
   name: '',
   code: '',
   type: '',
-  startDate: new Date(),
-  endDate: '',
   error: null,
 };
 
@@ -21,6 +20,19 @@ class CreateCategoryForm extends Component {
     super(props);
 
     this.state = { ...INITIAL_STATE };
+    this.setCurrentIndex = this.setCurrentIndex.bind(this);
+  }
+
+  componentDidMount() {
+    db.ref('categoriesIndex').once('value', snapshot => {
+      this.setCurrentIndex(snapshot.val());
+    });
+  }
+
+  setCurrentIndex(index) {
+    this.setState({
+      id: index,
+    });
   }
 
   onSubmit = (event) => {
@@ -29,16 +41,12 @@ class CreateCategoryForm extends Component {
       name,
       code,
       type,
-      startDate,
-      endDate,
     } = this.state;
 
     const data = {
       name,
       code,
       type,
-      startDate,
-      endDate,
     };
 
     const {
@@ -47,7 +55,14 @@ class CreateCategoryForm extends Component {
 
     database.doCreateCategory(id, data)
       .then(() => {
-        this.setState(() => ({ ...INITIAL_STATE }));
+        db.ref('categoriesIndex').set(id + 1);
+        this.setState(() => ({
+          id: id + 1,
+          name: '',
+          code: '',
+          type: '',
+          error: null,
+        }));
         history.push(routes.CATEGORIES);
       })
       .catch(error => {
@@ -63,25 +78,16 @@ class CreateCategoryForm extends Component {
       name,
       code,
       type,
-      startDate,
-      endDate,
       error,
     } = this.state;
     const isInvalid =
-      id === '' ||
       name === '' ||
       code === '' ||
       type === '';
     return (
-      <div className="container">
-      <div className="columns">
-        <div className="column is-two-thirds">
-          <h1 className="title is-3">Categories Table</h1>
-        </div>
-        <div className="column">
           <form onSubmit={this.onSubmit}>
           <h1 className="title is-3">Create Table</h1>
-            <div className="field">
+          <div className="field">
               <label className="label">ID</label>
               <div className="control">
                 <input
@@ -89,7 +95,8 @@ class CreateCategoryForm extends Component {
                   value={id}
                   onChange={event => this.setState(byPropKey('id', event.target.value))}
                   type="text"
-                  placeholder="ID"
+                  placeholder="Categories Name"
+                  disabled
                 />
               </div>
             </div>
@@ -129,36 +136,11 @@ class CreateCategoryForm extends Component {
                 />
               </div>
             </div>
-            <div className="field">
-              <label className="label">Start Day</label>
-              <div className="control">
-                <input
-                  className="input"
-                  value={startDate}
-                  onChange={event => this.setState(byPropKey('startDate', event.target.value))}
-                  type="date"
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">End Day</label>
-              <div className="control">
-                <input
-                  className="input"
-                  value={endDate}
-                  onChange={event => this.setState(byPropKey('endDate', event.target.value))}
-                  type="date"
-                />
-              </div>
-            </div>
             <button className="button is-primary" disabled={isInvalid} type="submit">
               Add New Category
             </button>
             {error && <p>{error.message}</p>}
           </form>
-        </div>
-      </div>
-      </div>
     );
   }
 }

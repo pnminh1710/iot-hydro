@@ -17,10 +17,6 @@
   bottom: 0;
 }
 
-:local(.box) {
-  height: 360px;
-}
-
 :local(.dateBox) {
   border: 1px solid #23d160;
   border-radius: 5px;
