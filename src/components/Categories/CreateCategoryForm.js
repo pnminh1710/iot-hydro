@@ -86,7 +86,6 @@ class CreateCategoryForm extends Component {
       type === '';
     return (
           <form onSubmit={this.onSubmit}>
-          <h1 className="title is-3">Create Table</h1>
           <div className="field">
               <label className="label">ID</label>
               <div className="control">

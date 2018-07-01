@@ -27,10 +27,10 @@ const NavigationAuth = () =>
     </div>
     <div className="navbar-menu">
       <div className="navbar-end">
-          <Link className="navbar-item" to={routes.CATEGORIES}>Categories</Link>
-          <Link className="navbar-item" to={routes.HOME}>Home</Link>
-          <Link className="navbar-item" to={routes.ACCOUNT}>Account</Link>
-          <SignOutButton />
+        <Link className="navbar-item" to={routes.CATEGORIES}>Categories</Link>
+        <Link className="navbar-item" to={routes.HOME}>Home</Link>
+        <Link className="navbar-item" to={routes.ACCOUNT}>Account</Link>
+        <SignOutButton />
       </div>
     </div>
   </div>
