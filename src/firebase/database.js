@@ -11,22 +11,31 @@ export const getAllCategories = () =>
 export const getCategory = (id) => 
   db.ref(`categories/${id}`).once('value');
 
-export const doCreateProductsList = () => {
-  const now = new Date();
-  const manufacturingDate = now.setDate(now.getDate() + now.getDay());
-  const expiryDate = 7;
-  for (let i = 1; i <=200; i++) {
-    const weight = Math.floor((Math.random() * 600) + 400);
-    db.ref(`products/${i}`).set({
-      id: i,
-      name: 'Rau Mâm Xôi',
-      type: 'Rau xanh',
-      code: `RMX${i}`,
-      weight,
-      manufacturingDate,
-      expiryDate,
+export const getProductIndex = () =>
+  db.ref(`productIndex`).once('value');
+
+export const setProductIndex = (id) =>
+  db.ref(`productIndex`).set(id);
+
+export const doCreateProductsList = (data) => {
+  getProductIndex()
+    .then((snapshot) => {
+      console.log(snapshot.val());
+      const start = parseInt(snapshot.val(), 10);
+      const totalProducts = parseInt(data.totalProducts, 10);
+      for (let i = 0 ; i < totalProducts; i++) {
+        db.ref(`products/${i + start}`).set({
+          id: i + start,
+          name: data.name,
+          type: data.type,
+          code: `${data.defaultCode}-${i}`,
+          manufacturingDate: data.manufacturingDate,
+          expiryDate: parseInt(data.expiryDate, 10),
+          url: `localhost:3000/products/${i + start}`,
+        });
+      }
+      setProductIndex(start + parseInt(data.totalProducts, 10));
     });
-  }
 }
 
 export const getAllProducts = () => 
@@ -34,3 +43,30 @@ export const getAllProducts = () =>
 
 export const getProducts = (url) => 
   db.ref(url).once('value');
+
+export const getStep = () =>
+  db.ref('currentStep').once('value');
+
+export const doCreateProject = (id, data) =>
+  db.ref(`projects/${id}`).set({
+    id,
+    ...data,
+  });
+
+export const doCreateSettings = (id, data) => 
+  db.ref(`settings/${id}`).set({
+    id,
+    ...data,
+  });
+
+export const setDefaultSettings = (data) => 
+  db.ref('defaultSettings').set(data);
+
+export const getIndexSettings = () => 
+  db.ref('settingsIndex').once('value');
+
+export const setIndexSettings = (id) =>
+  db.ref('settingsIndex').set(id);
+
+export const getCurrentProject = () => 
+  db.ref('currentProject').once('value');

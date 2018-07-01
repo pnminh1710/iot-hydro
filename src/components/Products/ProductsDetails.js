@@ -14,7 +14,8 @@ class ProductsDetails extends Component {
     const url = this.props.pathname.slice(1);
     database.getProducts(url)
       .then((snapshot) => {
-        this.setState({ details: snapshot.val() });
+        const details = snapshot.val() || {};
+        this.setState({ details });
       })
   }
   render() {
@@ -25,7 +26,6 @@ class ProductsDetails extends Component {
         <h1>{details.name}</h1>
         <h1>{details.code}</h1>
         <h1>{details.type}</h1>
-        <h1>{details.weight}</h1>
         <h1>{details.manufacturingDate}</h1>
         <h1>{details.expiryDate}</h1>
       </div>

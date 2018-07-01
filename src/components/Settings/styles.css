@@ -1,0 +1,16 @@
+.config-settings .control {
+  margin: 8px 0px;
+}
+
+.settings-wrapper {
+  margin: 16px;
+}
+
+.qrcode {
+  display: inline-block;
+  margin: 16px;
+}
+
+#divToPrint {
+  display: hide;
+}

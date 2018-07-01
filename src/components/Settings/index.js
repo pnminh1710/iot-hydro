@@ -1,15 +1,33 @@
 import React, { Component } from 'react';
+import { database } from '../../firebase';
 
 import GetStarted from './GetStarted';
+import AutomationConfig from './AutomationConfig';
+import Final from './Final';
+import ExportQR from './ExportQR';
 
 class Settings extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      step: 1,
+      step: null,
     }
     this.changeStep = this.changeStep.bind(this);
+    this.setStep = this.setStep.bind(this);
+  }
+
+  componentDidMount() {
+    database.getStep()
+      .then(snapshot => {
+        this.setStep(snapshot.val());
+      });
+  }
+
+  setStep(step) {
+    this.setState({
+      step: 4,
+    });
   }
 
   changeStep() {
@@ -24,16 +42,13 @@ class Settings extends Component {
     const { step } = this.state;
     return (
       <div className="container">
-        <div class="tabs is-medium">
-          <ul>
-            <li className={step === 1 ? 'is-active' : ''}><a>Pictures</a></li>
-            <li className={step === 2 ? 'is-active' : ''}><a>Music</a></li>
-            <li className={step === 3 ? 'is-active' : ''}><a>Videos</a></li>
-            <li className={step === 4 ? 'is-active' : ''}><a>Documents</a></li>
-          </ul>
-        </div>
-        {step === 1 && (<GetStarted />)}
-        <button className="button is-primary" onClick={this.changeStep}>Move to next step</button>
+        {!step && (<div>
+          <h1 className="title is-3">Loading</h1>
+        </div>)}
+        {step === 1 && (<GetStarted changeStep={this.changeStep} />)}
+        {step === 2 && (<AutomationConfig changeStep={this.changeStep} />)}
+        {step === 3 && (<Final changeStep={this.changeStep} />)}
+        {step === 4 && (<ExportQR changeStep={this.changeStep} />)}
       </div>
     );
   }

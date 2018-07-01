@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import { database } from '../../firebase';
 
-const createDate = (timestamp) => {
-  const date = new Date(timestamp);
-  const day = ("0" + date.getDate()).slice(-2);
-  const month = ("0" + (date.getMonth() + 1)).slice(-2);
-  const year = date.getFullYear();
-  return `${day}-${month}-${year}`
-}
-
 class ProductsTable extends Component {
   constructor(props) {
     super(props);
@@ -23,10 +15,7 @@ class ProductsTable extends Component {
     if (this.state.loading === true) {
     database.getAllProducts()
       .then((snapshot) => {
-        let productsList = snapshot.val();
-        productsList.forEach(element => {
-          element.manufacturingDate = createDate(element.manufacturingDate);
-        });
+        let productsList = snapshot.val() || [];
         this.setState({
           productsList,
           loading: false,
@@ -49,7 +38,6 @@ class ProductsTable extends Component {
                 <th>Name</th>
                 <th>Type</th>
                 <th>Code</th>
-                <th>Weight</th>
                 <th>Manufacturing Date</th>
                 <th>Expiry Date</th>
               </tr>
@@ -62,7 +50,6 @@ class ProductsTable extends Component {
                     <th>{element.name}</th>
                     <th>{element.type}</th>
                     <th>{element.code}</th>
-                    <th>{element.weight}</th>
                     <th>{element.manufacturingDate}</th>
                     <th>{element.expiryDate}</th>
                   </tr>
