@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 import style from './style.css';
 
 import SignInForm from './SignInForm';
-import SignUpLink from '../SignUp/SignUpLink';
 import PasswordForgetLink from '../PasswordForget/PasswordForgetLink';
 
 const SignInPage = ({ history }) =>
@@ -14,7 +13,6 @@ const SignInPage = ({ history }) =>
       <SignInForm history={history} />
       <br/>
       <PasswordForgetLink />
-      <SignUpLink />
     </div>
   </div>
 

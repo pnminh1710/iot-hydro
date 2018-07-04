@@ -75,7 +75,7 @@ class SignInForm extends Component {
           </div>
         </div>
         <div className="field">
-          <label className="label">Name</label>
+          <label className="label">Password</label>
           <div className="control">
             <input
               className="input"
