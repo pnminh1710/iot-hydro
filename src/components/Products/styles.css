@@ -1,0 +1,11 @@
+.product-wrapper {
+  margin: 24px;
+  border: 3px dashed #209cee;
+  border-radius: 10px;
+}
+
+@media only screen and (min-width: 992px) {
+  .product-wrapper {
+    margin: 64px;
+  }
+}

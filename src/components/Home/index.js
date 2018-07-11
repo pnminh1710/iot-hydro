@@ -30,7 +30,7 @@ class HomePage extends Component {
     this.getData = this.getData.bind(this);
   }
   componentDidMount() {
-    db.ref('sensorData').on('value', snapshot => {
+    db.ref('sensor').on('value', snapshot => {
       this.getData(snapshot.val());
     });
   }

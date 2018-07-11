@@ -19,7 +19,7 @@ const INITIAL_STATE = {
 };
 
 const byPropKey = (propertyName, value) => () => ({
-  [propertyName]: value,
+  [propertyName]: parseInt(value, 10),
 });
 
 class AutomationConfig extends Component {
