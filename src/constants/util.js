@@ -27,7 +27,6 @@ export const createArrayDate = (startDate, endDate) => {
   let arrayDate = [];
   for (let i = 0; i < duration; i++) {
     const newDate = normalizeDate(new Date(timestampStartDate + i *UNIT_DATE));
-    console.log(newDate);
     arrayDate.push(newDate);
   }
   return {
