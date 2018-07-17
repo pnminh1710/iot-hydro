@@ -26,7 +26,7 @@ class Settings extends Component {
 
   setStep(step) {
     this.setState({
-      step: 2,
+      step: 1,
     });
   }
 

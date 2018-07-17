@@ -4,7 +4,8 @@ import { withRouter } from 'react-router-dom';
 import style from './style.css';
 
 import SignInForm from './SignInForm';
-import PasswordForgetLink from '../PasswordForget/PasswordForgetLink';
+// import SignUpLink from '../SignUp/SignUpLink';
+// import PasswordForgetLink from '../PasswordForget/PasswordForgetLink';
 
 const SignInPage = ({ history }) =>
   <div className={style.wrapper}>
@@ -12,7 +13,8 @@ const SignInPage = ({ history }) =>
       <h1 className={`${style.title} title is-1 has-text-centered`}>Sign In</h1>
       <SignInForm history={history} />
       <br/>
-      <PasswordForgetLink />
+      {/* <SignUpLink /> */}
+      {/* <PasswordForgetLink /> */}
     </div>
   </div>
 
