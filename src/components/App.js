@@ -16,6 +16,7 @@ import HistoryPage from './HistoryPage';
 import CategoriesPage from './Categories';
 import Products from './Products';
 import Settings from './Settings';
+import Logs from './Logs';
 
 import * as routes from '../constants/routes';
 import { firebase } from '../firebase';
@@ -54,6 +55,7 @@ class App extends Component {
           <Route exact path={routes.HISTORY} component={() => <HistoryPage />} />
           <Route exact path={routes.CATEGORIES}  component={() => <CategoriesPage />} />
           <Route exact path={routes.SETTINGS}  component={() => <Settings />} />
+          <Route exact path={routes.LOGS}  component={() => <Logs />} />
           <Route path={routes.PRODUCTS}  component={() => <Products />} />
         </div>
       </Router>)

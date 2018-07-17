@@ -10,3 +10,4 @@ export const CATEGORIES = '/categories';
 export const CATEGORY = '/category';
 export const PRODUCTS = '/products';
 export const SETTINGS = '/settings';
+export const LOGS = '/logs';
