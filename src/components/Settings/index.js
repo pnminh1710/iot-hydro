@@ -26,16 +26,18 @@ class Settings extends Component {
 
   setStep(step) {
     this.setState({
-      step: 1,
+      step,
     });
   }
 
   changeStep() {
     if (this.state.step === 4) {
+      database.setStep(1);
       this.setState({ step: 1 });
       return;
     }
     this.setState({ step: this.state.step + 1 });
+    database.setStep(this.state.step);
   }
 
   render() {

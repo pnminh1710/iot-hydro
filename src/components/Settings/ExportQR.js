@@ -44,8 +44,8 @@ class ExportQR extends Component {
         const pdf = new jsPDF();
         pdf.addImage(imgData, 'JPEG', 0, 0);
         pdf.save("download.pdf");
-      })
-      ;
+      });
+    this.props.changeStep();
   }
 
   render() {

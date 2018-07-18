@@ -49,16 +49,16 @@ class ControlPage extends Component {
   }
 
   gotoManual() {
-    this.setState({ openManual: true });
+    this.setState({ isManual: true });
   };
 
   gotoAutomation() {
-    this.setState({ openManual: false });
+    this.setState({ isManual: false });
   };
 
   changeStatus(event) {
-    const name = event.target.id.slice(0, 5);
-    const value = event.target.id.slice(6) === 'on' ? 1 : 0;
+    const [name, data] = event.target.id.split('-');
+    const value = data === 'on' ? 1 : 0;
     this.setState({
       status: {
         ...this.state.status,

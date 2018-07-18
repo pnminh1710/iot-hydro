@@ -36,13 +36,13 @@ class HomePage extends Component {
   }
 
   getData(data) {
-    const { temperature, humility, moisture } = data;
+    const { temp, hum, moi } = data;
     this.setState({
-      temperature,
-      humility,
-      moisture,
+      temperature: temp,
+      humility: hum,
+      moisture: moi,
       waterHeight: {
-        height: `${data.waterLevel}%`,
+        height: `${data.waLevel/13*100}%`,
       },
     })
   }
@@ -78,8 +78,8 @@ class HomePage extends Component {
           <div className="columns">
             <div className="column is-one-quarter">
               <h2 className={`${style.titleData} title is-3`}>Water Level</h2>
+              <p className="subtitle is-2 has-text-centered water-level">{waterHeight.height}</p>
               <div className={`${style.tank} has-text-centered`}>
-                <p className="subtitle is-2">{waterHeight.height}</p>
                 <div className={style.water} style={waterHeight}></div>
               </div>
             </div>
