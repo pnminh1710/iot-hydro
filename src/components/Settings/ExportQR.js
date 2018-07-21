@@ -20,6 +20,7 @@ class ExportQR extends Component {
       totalPage: 1,
     };
     this.doCreateUrlList = this.doCreateUrlList.bind(this);
+    this.printDocument = this.printDocument.bind(this);
   }
 
   componentDidMount() {
@@ -44,8 +45,8 @@ class ExportQR extends Component {
         const pdf = new jsPDF();
         pdf.addImage(imgData, 'JPEG', 0, 0);
         pdf.save("download.pdf");
+        this.props.changeStep();
       });
-    this.props.changeStep();
   }
 
   render() {
