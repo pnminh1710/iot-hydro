@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { database } from '../../firebase';
 
+import withAuthorization from '../withAuthorization';
+
+const authCondition = (authUser) => !!authUser;
+
 class ProductsTable extends Component {
   constructor(props) {
     super(props);
@@ -64,4 +68,4 @@ class ProductsTable extends Component {
   }
 }
 
-export default ProductsTable;
+export default withAuthorization(authCondition)(ProductsTable);

@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { database } from '../../firebase';
+import withAuthorization from '../withAuthorization';
 
 import GetStarted from './GetStarted';
 import AutomationConfig from './AutomationConfig';
 import Final from './Final';
 import ExportQR from './ExportQR';
+
+const authCondition = (authUser) => !!authUser;
 
 class Settings extends Component {
   constructor(props) {
@@ -56,4 +59,4 @@ class Settings extends Component {
   }
 }
 
-export default Settings;
+export default withAuthorization(authCondition)(Settings);

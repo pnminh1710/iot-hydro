@@ -49,10 +49,12 @@ class ControlPage extends Component {
   }
 
   gotoManual() {
+    db.ref('isManual').set(1);
     this.setState({ isManual: true });
   };
 
   gotoAutomation() {
+    db.ref('isManual').set(0);
     this.setState({ isManual: false });
   };
 

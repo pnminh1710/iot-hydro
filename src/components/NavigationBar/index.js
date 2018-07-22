@@ -27,6 +27,8 @@ const NavigationAuth = () =>
     </div>
     <div className="navbar-menu">
       <div className="navbar-end">
+        <Link className="navbar-item" to={routes.CONTROL}>Control</Link>
+        <Link className="navbar-item" to={routes.LOGS}>Logs</Link>
         <Link className="navbar-item" to={routes.CATEGORIES}>Categories</Link>
         <Link className="navbar-item" to={routes.PRODUCTS}>Products</Link>
         <Link className="navbar-item" to={routes.SETTINGS}>Settings</Link>
