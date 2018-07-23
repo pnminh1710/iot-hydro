@@ -42,7 +42,7 @@ class HomePage extends Component {
       humility: hum,
       moisture: moi,
       waterHeight: {
-        height: `${data.waLevel/13*100}%`,
+        height: `${Math.floor(data.waLevel/13*100)}%`,
       },
     })
   }
@@ -57,21 +57,18 @@ class HomePage extends Component {
               <div className="box">
                 <h2 className={`${style.titleData} title is-3`}>Temperature</h2>
                 <p className="title is-1">{temperature || '--'} °C</p>
-                <p className="has-text-primary">Current Value</p>
               </div>
             </div>
             <div className="column has-text-centered">
               <div className="box">
                 <h2 className={`${style.titleData} title is-3`}>Humility</h2>
                 <p className="title is-1">{humility || '--'} %</p>
-                <p className="has-text-primary">Current Value</p>
               </div>
             </div>
             <div className="column has-text-centered">
               <div className="box">
                 <h2 className={`${style.titleData} title is-3`}>Moisture</h2>
                 <p className="title is-1">{moisture || '--'} %</p>
-                <p className="has-text-danger">Previous Value</p>
               </div>
             </div>
           </div>
