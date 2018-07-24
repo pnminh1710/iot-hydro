@@ -7,11 +7,13 @@ import style from './Home.css';
 
 const authCondition = (authUser) => !!authUser;
 
-const fakeHistory = ['01/06', '02/06', '03/06', '04/06', '05/06', '06/06', '07/06', ];
+const fakeHistory = ['01/06', '02/06', '03/06', '04/06', '05/06', '06/06', '07/06'];
 
 const listHistory = fakeHistory.map((element, key) => 
-  <div key={key} className={`${style.dateBox} column has-text-centered is-2`}>
-      <p className="title is-5">{element}</p>
+  <div key={key} className='column has-text-centered is-2'>
+      <div className="box">
+        <p className="title is-5">{element}</p>
+      </div>
   </div>
 );
 
@@ -74,7 +76,7 @@ class HomePage extends Component {
           </div>
           <div className="columns">
             <div className="column is-one-quarter">
-              <h2 className={`${style.titleData} title is-3`}>Water Level</h2>
+              <h2 className={`${style.titleData} title is-3 has-text-centered`}>Water Level</h2>
               <p className="subtitle is-2 has-text-centered water-level">{waterHeight.height}</p>
               <div className={`${style.tank} has-text-centered`}>
                 <div className={style.water} style={waterHeight}></div>
@@ -82,7 +84,7 @@ class HomePage extends Component {
             </div>
             <div className="column">
               <h2 className={`${style.titleData} title is-3`}>Water History</h2>
-              <div className="columns is-mobile is-multiline">
+              <div className="columns is-multiline">
                 {listHistory}
               </div>
             </div>

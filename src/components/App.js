@@ -28,7 +28,9 @@ class App extends Component {
 
     this.state = {
       authUser: null,
+      showNavbar: false,
     };
+    this.toggleNavbar = this.toggleNavbar.bind(this);
   }
 
   componentDidMount() {
@@ -39,11 +41,15 @@ class App extends Component {
     });
   }
 
+  toggleNavbar() {
+    this.setState({ showNavbar: !this.state.showNavbar});
+  }
+
   render() {
     return (
       <Router>
         <div>
-          <NavigationBar authUser={this.state.authUser} />
+          <NavigationBar authUser={this.state.authUser} toggleNavbar={this.toggleNavbar} showNavbar={this.state.showNavbar} />
           
           <Route exact path={routes.LANDING} component={() => <LandingPage authUser={this.state.authUser} />} />
           <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />

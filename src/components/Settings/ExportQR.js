@@ -24,10 +24,15 @@ class ExportQR extends Component {
   }
 
   componentDidMount() {
-    database.getAllProducts()
-      .then(snapshot => {
-        this.doCreateUrlList(snapshot.val());
-      })
+    Promise
+      .all([database.getAllProducts(), database.getCurrentProject()])
+      .then(([products, currentProject]) => {
+        console.log(products.val());
+        const length = products.val().length;
+        const totalProducts = parseInt(currentProject.val().totalProducts, 10)
+        const filterList = products.val().slice(length - totalProducts);
+        this.doCreateUrlList(filterList);
+      });
   };
 
   doCreateUrlList(productList) {

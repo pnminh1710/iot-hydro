@@ -62,7 +62,10 @@ class Final extends Component {
           ...INITIAL_STATE,
         });
         this.createProductList(snapshot.val(), data);
-        this.props.changeStep();
+        database.setTotalProducts(data.totalProducts)
+          .then(() => {
+            this.props.changeStep();
+          })
         history.push(routes.CATEGORIES);
       })
       .catch(error => {

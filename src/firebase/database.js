@@ -73,3 +73,6 @@ export const setIndexSettings = (id) =>
 
 export const getCurrentProject = () =>
   db.ref('currentProject').once('value');
+
+export const setTotalProducts = (data) => 
+  db.ref('currentProject/totalProducts').set(data);
