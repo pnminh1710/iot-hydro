@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { db } from '../../firebase/firebase';
+
+import * as util from '../../constants/util';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 
@@ -7,50 +10,53 @@ class Logs extends Component {
     super(props);
 
     this.state = {
-      data: [
-        {
-          data: '01-01-2018',
-          temperature: 33.2,
-        },
-        {
-          data: '01-01-2018',
-          temperature: 20.2,
-        },
-        {
-          data: '01-01-2018',
-          temperature: 35.2,
-        },
-      ],
+      data: [],
+      loading: true,
     };
 
-    this.drawChart = this.drawChart.bind(this);
+    this.createFakeLog = this.createFakeLog.bind(this);
+    this.getLogs = this.getLogs.bind(this);
   }
   componentDidMount() {
-
+    this.getLogs()
   }
 
-  drawChart() {
-    const data = [];
-    for (let i = 0; i < 30; i++) {
-      const value = {
-        name: i + 1,
-        temperature: Math.floor((Math.random() * 33) + 30),
-        humility: Math.floor((Math.random() * 90) + 100),
-        moisture: Math.floor((Math.random() * 70) + 90),
+  createFakeLog() {
+    const fakeTimeStamp = util.createArrayDate('2018-05-01', '2018-07-27', true).data;
+    for (let i = 0; i < fakeTimeStamp.length; i++) {
+      const element = {
+        date: fakeTimeStamp[i],
+        temperature: parseFloat(((Math.random() * (33 - 30)) + 30).toFixed(2)),
+        humility: parseFloat(((Math.random() * (100 - 90)) + 90).toFixed(2)),
+        moisture: parseFloat(((Math.random() * (90 - 70)) + 70).toFixed(2)),
       }
-      data.push(value);
+      db.ref(`timeLogs/${i}`).set(element);
     }
-    this.setState({ data });
   }
+
+  getLogs() {
+    db.ref('timeLogs').once('value')
+      .then(snapshot => {
+        const data = snapshot.val().map(element => {
+          return {
+            ...element,
+            date: util.normalizeDate(new Date(element.date)),
+          };
+        });
+        this.setState({ data, loading: false });
+      });
+  }
+
   render() {
-    const { data } = this.state;
+    const { data, loading } = this.state;
+    if (loading) return <h1 className="title is-1">Loading</h1>
     return (
-      <div>
+      <div className="container">
         <h1 className="title is-3">Chart</h1>
         <div>
-          <LineChart width={1024} height={300} data={data}>
+          <LineChart width={1024} height={600} data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" padding={{ left: 30, right: 30 }} />
+            <XAxis dataKey="date" allowDataOverflow={true} padding={{ left: 30, right: 30 }} />
             <YAxis />
             <Tooltip />
             <Legend />
@@ -59,7 +65,6 @@ class Logs extends Component {
             <Line type="monotone" dataKey="moisture" stroke="#111111" />
           </LineChart>
         </div>
-        <button className="button is-primary" onClick={this.drawChart}>Create Data</button>
       </div>
     );
   }

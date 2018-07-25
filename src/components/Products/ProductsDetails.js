@@ -35,7 +35,6 @@ class ProductsDetails extends Component {
   }
 
   createArray(arr) {
-    console.log(arr);
     this.setState({ waterLog: arr });
   }
 

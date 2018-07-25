@@ -16,7 +16,7 @@ export const parseDate = (date) => {
   };
 }
 
-export const createArrayDate = (startDate, endDate) => {
+export const createArrayDate = (startDate, endDate, timestamp = false) => {
   startDate = parseDate(startDate);
   endDate = parseDate(endDate);
   startDate = new Date(startDate.year, startDate.month-1, startDate.day);
@@ -26,7 +26,9 @@ export const createArrayDate = (startDate, endDate) => {
   const duration = (timestampEndDate - timestampStartDate) / UNIT_DATE + 1;
   let arrayDate = [];
   for (let i = 0; i < duration; i++) {
-    const newDate = normalizeDate(new Date(timestampStartDate + i *UNIT_DATE));
+    const newDate = timestamp ? 
+      timestampStartDate + i * UNIT_DATE:
+      normalizeDate(new Date(timestampStartDate + i *UNIT_DATE));
     arrayDate.push(newDate);
   }
   return {
@@ -34,3 +36,4 @@ export const createArrayDate = (startDate, endDate) => {
     data: arrayDate,
   }
 }
+
